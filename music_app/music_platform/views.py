@@ -1,6 +1,6 @@
 from django.shortcuts import HttpResponseRedirect,render
 from .forms import * 
-from .miscellaneous import object_exists
+from .miscellaneous import object_creator,object_exists
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
@@ -52,3 +52,34 @@ def logouts(request):
     else:
         messages.error(request,"Logout failed, Not logged in")
         return HttpResponseRedirect("/login/")
+    
+def music_upload(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            form=music_upload_form(request.POST,request.FILES,{"owner_email":request.user.id})
+            if form.is_valid():
+                inst=form.save(commit=False)
+                inst.owner_email=request.user.email
+                inst.owner_date_time=timezone.now()
+                inst.save()
+                if request.POST["music_type"]=="protected":
+                    return HttpResponseRedirect(f"/upload_music_protected_access_allowed_{inst.id}")
+                else:
+                    messages.success(request,"File Uploaded Successfully")
+            else:
+                context={"form":music_upload_form()}
+                messages.error(request,"File did not upload Successfully")
+        context={"form":music_upload_form}
+        return render(request,"music_platform/music_upload.html",context)
+    else:
+        return HttpResponseRedirect("/login/")
+
+def music_upload_protected_allows(request,music_id):
+    if object_exists(factor={"id":music_id},model="music_uploads_model"):
+        context={"music_id":music_id}
+        if request.method=="POST":
+            allowed_emails=[x for x in request.POST["protect_emails"].split(',') if object_exists({"email":x},model="User")]
+            [object_creator(factor={"email":x,"music_id_id":music_id},model="protected_accessors") for x in allowed_emails]
+        return render(request,"music_platform/protected_allows.html",context)
+    else:
+        return HttpResponseRedirect("/home/")

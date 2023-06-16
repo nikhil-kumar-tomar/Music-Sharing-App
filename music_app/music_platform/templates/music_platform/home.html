@@ -17,7 +17,7 @@
       margin:auto;
       transform: translateY(80%);
     }
-     
+
 </style>
   
 <body>
@@ -25,6 +25,9 @@
 {% if authenticated %}
 <nav class="navbar navbar-expand-md navbar-light bg-dark">
   <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/upload_music/"><button type="button" class="btn btn-outline-primary btn-sm">Upload Music</button></a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="/logout/"><button type="button" class="btn btn-outline-danger btn-sm">Logout</button></a>
     </li>
@@ -47,11 +50,19 @@
       <div class="table-responsive">
       <table class="table table-dark table-hover">
         <tr>
-            <th>Music</th>
+            <th>Music Name</th>
+            <th>Artist</th>
+            <th>Artist email</th>
+            <th style="text-align: center;">Play, Pause or Download</th>
         </tr>
       {% for dat in data %}
         <tr>
-            <td>{{dat}}</td>
+            <td>{{dat.music_name}}</td>
+            <td>{{dat.owner_email.first_name}} {{dat.owner_email.last_name}}</td>
+            <td>{{dat.owner_email_id}}</td>
+            <td style="display: flex; justify-content: center; align-items: center;"><audio controls
+              src="{{content}}{{dat.music_file}}">
+          </audio></td>
         </tr>
       {% endfor %}
       </table>

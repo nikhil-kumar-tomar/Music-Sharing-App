@@ -1,8 +1,7 @@
-from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from .models import *
+from .models import music_uploads_model
 
 class user_create(UserCreationForm):
     first_name=forms.CharField(max_length=300,required=True)
@@ -12,7 +11,7 @@ class user_create(UserCreationForm):
         fields=['username','first_name','last_name','email','password1','password2']
 class user_sign(forms.Form):
     email=forms.CharField(max_length=400)
-    password=forms.CharField(max_length=400)
+    password=forms.CharField(widget=forms.PasswordInput,max_length=400)
 
 class music_upload_form(forms.ModelForm):
     choices = [

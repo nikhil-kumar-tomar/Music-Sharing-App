@@ -1,3 +1,5 @@
+# Note
+I would like to specify that the whole project is built on top of python and django only, Github shows that javascript is used because these are the default files created by django admin panel when command `python manage.py collectstatic` is called. This project does not use javascript anywhere for any of its operations.
 # Deployment
 1. move the .env with configured details to Music-Sharing-App/music_app/music_app/ </br>
 2. In current folder create a .venv folder and initialize a virtual env
@@ -38,3 +40,4 @@ location / {
 ```
 6. Make sure folders `static` and `media` are given access to nginx, use nginx.conf to see the user value and change these folder permissions for that user  
 7. Finally run command `sudo systemctl restart nginx`
+

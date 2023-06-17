@@ -25,8 +25,8 @@ SECRET_KEY = config("DJANGO_SECRET_KEY",default="p83@s1-#+!3vg9dxm99&gndey*(v#*y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost'] # Requires IP address of production server
-
+ALLOWED_HOSTS = ['localhost'] # Requires IP address of production server as an addition as well
+CORS_ALLOWED_ORIGINS=["localhost"]
 
 # Application definition
 
@@ -41,10 +41,12 @@ INSTALLED_APPS = [
     # Third party below
     'django_browser_reload',
     'widget_tweaks',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

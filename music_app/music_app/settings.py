@@ -25,7 +25,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY",default="p83@s1-#+!3vg9dxm99&gndey*(v#*y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost'] # Requires IP address of production server
 
 
 # Application definition

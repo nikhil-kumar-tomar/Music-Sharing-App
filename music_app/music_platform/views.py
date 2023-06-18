@@ -61,7 +61,8 @@ def music_upload(request):
     if request.user.is_authenticated:
         if request.method=="POST":
             form=music_upload_form(request.POST,request.FILES,{"owner_email":request.user.id})
-            if form.is_valid():
+            # Below form will first be validated and file must also be a audio type otherwise upload fails
+            if form.is_valid() and request.FILES["music_file"].content_type[0:5]=="audio":
                 inst=form.save(commit=False)
                 inst.owner_email_id=request.user.email
                 inst.save()

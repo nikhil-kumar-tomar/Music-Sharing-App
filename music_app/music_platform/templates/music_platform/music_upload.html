@@ -31,7 +31,7 @@ body {
     <form action="", method="POST" class="form-group vertical-center" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-2">
-        <label for="music_name" style="color: white;"><b>Music Name</b></label>
+        <label for="Music Name" style="color: white;"><b>Music Name</b></label>
         {% render_field form.music_name placeholder="Poker Face" class="form-control" style="width:300px;" %}
         </div>
         <div class="mb-2">
@@ -41,6 +41,9 @@ body {
         <div class="mb-2">
         <label for="music_type" style="color: white;"><b>Music Type</b></label>
         {% render_field form.music_type placeholder="Nickos@2389" id="types" class="form-control" style="width:300px;" %}
+        </div>
+        <div class="mb-2">
+        <p style="color:rgb(190, 249, 71);">Note: Only audio files are permitted to be uploaded.</p>
         </div>
         <div class="vertical-center"> 
         <input type="submit" class="btn btn-primary" style="width:300px" value="Submit">

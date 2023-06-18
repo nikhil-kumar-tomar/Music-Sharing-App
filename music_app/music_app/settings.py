@@ -26,7 +26,7 @@ SECRET_KEY = config("DJANGO_SECRET_KEY",default="p83@s1-#+!3vg9dxm99&gndey*(v#*y
 DEBUG = False
 
 ALLOWED_HOSTS = ['localhost'] # Requires IP address of production server as an addition as well
-CORS_ALLOWED_ORIGINS=["localhost"]
+CORS_ALLOWED_ORIGINS=["http://localhost"]
 
 # Application definition
 

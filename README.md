@@ -29,7 +29,7 @@ timeout=90
 
 contents of nginx default file 
 </br>
-```bash
+```json
 server {
         listen 80;
         server_name <IP Address of your machine>;

@@ -29,7 +29,7 @@ timeout=90
 
 contents of nginx default file 
 </br>
-```json
+```python
 server {
         listen 80;
         server_name <IP Address of your machine>;
@@ -47,6 +47,7 @@ location / {
         proxy_pass http://127.0.0.1:8000;
         }
 }
+
 ```
 6. Make sure folders `static` and `media` are given access to nginx, use nginx.conf to see the user value and change these folder permissions for that user  
 7. Finally run command `sudo systemctl restart nginx`

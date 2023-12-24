@@ -1,5 +1,3 @@
-# Note
-I would like to specify that the whole project is built on top of python and django only, Github shows that javascript is used because these are the default files created by django admin panel when command `python manage.py collectstatic` is called. This project does not use javascript anywhere for any of its operations.
 # Usage
 This web app allows logged in users to upload music and share it with others, There are 3 sharing methods available on this platform listed below:
 Music Type  | Description
